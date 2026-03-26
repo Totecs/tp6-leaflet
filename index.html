@@ -22,7 +22,39 @@
                 var marker = L.marker([-34.6037, -58.3816]).addTo(map);
                 marker.bindPopup("Hola! Soy un popup 😄");
             </script>
+            <script>
+    	        var marker = L.marker([-37.6037, -59.3816]).addTo(map);
+            </script>
+            <script>
+                var marker = L.marker([-37.6037, -59.3816]).addTo(map);
+                marker.bindPopup("casi tandil");
+            </script>
+            <script>
+    	        var marker = L.marker([32.037, 35.3816]).addTo(map);
+            </script>
+            <script>
+                var marker = L.marker([32.037, 35.3816]).addTo(map);
+                marker.bindPopup("Israel (creo)");
+            </script>
+            <script>
+    	        var marker = L.marker([-20.5478, -28.4018]).addTo(map);
+            </script>
+            <script>
+                var marker = L.marker([-20.5478, -28.4018]).addTo(map);
+                marker.bindPopup("isla");
+            </script>
+            <script>
+                var popup = L.popup();
 
+                function onMapClick(e) {
+                    popup
+                        .setLatLng(e.latlng)
+                        .setContent("You clicked the map at " + e.latlng.toString())
+                        .openOn(map);
+                }
+
+                map.on('click', onMapClick);
+            </script>
 
         </body>
     </html>
