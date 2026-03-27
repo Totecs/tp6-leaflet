@@ -9,24 +9,41 @@
         </head>
         <body>
             <div id="map" style="height: 500px;"></div>
-            <script> var map = L.map('map').setView([-34.6037, -58.3816], 13);</script>
-        	<script>
-	            var Original = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            <script> 
+                var map = L.map('map').setView([-34.6037, -58.3816], 13);
+
+                var greenIcon = L.icon({
+                iconUrl: 'momo.png',
+
+                iconSize:     [38, 95], // size of the icon
+                shadowSize:   [50, 64], // size of the shadow
+                iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                shadowAnchor: [4, 62],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                });
+                
+                var Original = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
                 }).addTo(map);
                 
                 var Capa_2 = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
+                maxZoom: 19,
+                attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
+            
+
             </script>
+        
             <script>
                 var baseMaps = {
                     "mapa original": Original,
                     "la segunda capa": Capa_2
                 };
             </script>
+
+
             <script>
                 var layerControl = L.control.layers(baseMaps).addTo(map);
+                L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
             </script>
             <script>
     	        var marker = L.marker([-34.6037, -58.3816]).addTo(map);
