@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Mapa</title>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        	
+
+        </head>
+        <body>
+            <div id="map" style="height: 500px;"></div>
+            <script> 
+                var map = L.map('map').setView([0, 0], 5);
+
+                var personalizado = L.icon({
+                iconUrl: '../marker.png',
+
+                iconSize:     [43, 50], 
+                iconAnchor:   [22, 50], 
+                popupAnchor:  [0, -46] 
+                });
+                
+                var Original = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+                
+                var Capa_2 = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
+                    
+                
+
+            </script>
+        
+            <script>
+                var baseMaps = {
+                    "mapa original": Original,
+                    "la segunda capa": Capa_2
+                };
+            </script>
+
+
+            <script>
+                var layerControl = L.control.layers(baseMaps).addTo(map);
+            </script>
+
+            <script>
+           
+                var marker = L.marker([38.895, -77.036666666667], {icon: personalizado}).addTo(map);
+                marker.bindPopup("Wachintong D.C");
+            
+    	        var marker = L.marker([18.300, -64.825], {icon: personalizado}).addTo(map);
+                marker.bindPopup("mi casa");
+           
+                var marker = L.marker([32.037, 35.3816], {icon: personalizado}).addTo(map);
+                marker.bindPopup("Israel (creo)");
+
+                var marker = L.marker([-23.55, -46.63], {icon: personalizado}).addTo(map);
+                marker.bindPopup("Sao Paulo");
+
+            </script>
+
+            <script>
+                var popup = L.popup();
+
+                function onMapClick(e) {
+                    popup
+                        .setLatLng(e.latlng)
+                        .setContent("You clicked the map at " + e.latlng.toString())
+                        .openOn(map);
+                }
+
+                map.on('click', onMapClick);
+            </script>
+            <script>
+                var polygon = L.polygon([
+                [51.509, -0.08],
+                [51.503, -0.06],
+                [51.51, -0.047]
+                ]).addTo(map);
+                polygon.bindPopup("Wapping").openPopup();
+            </script>
+            
+            
+           
+        </body>
+    </html>
