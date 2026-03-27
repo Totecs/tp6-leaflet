@@ -11,9 +11,22 @@
             <div id="map" style="height: 500px;"></div>
             <script> var map = L.map('map').setView([-34.6037, -58.3816], 13);</script>
         	<script>
-	            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	            var Original = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
                 }).addTo(map);
+                
+                var Capa_2 = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
+            </script>
+            <script>
+                var baseMaps = {
+                    "mapa original": Original,
+                    "la segunda capa": Capa_2
+                };
+            </script>
+            <script>
+                var layerControl = L.control.layers(baseMaps).addTo(map);
             </script>
             <script>
     	        var marker = L.marker([-34.6037, -58.3816]).addTo(map);
@@ -63,12 +76,8 @@
                 ]).addTo(map);
                 polygon.bindPopup("Wapping").openPopup();
             </script>
-            <script>
-                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                }).addTo(map);
-            </script>
-
+            
+            
+           
         </body>
     </html>
